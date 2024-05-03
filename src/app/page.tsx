@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/css/page.module.css';
 import InputTest from '@/components/InputTest';
 

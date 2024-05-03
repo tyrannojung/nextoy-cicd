@@ -15,15 +15,18 @@ export default function InputTest() {
       <Flex>
         <InputGroup pr="4">
           <Input
+            id="number-input"
             type="number"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)} // 입력 값 변경 시 inputValue 상태 업데이트
           />
         </InputGroup>
-        <Button onClick={handleSubmit}>submit</Button>
+        <Button id="submit-button" onClick={handleSubmit}>
+          submit
+        </Button>
       </Flex>
       <Flex>
-        <Text>Value : {formattedValue}</Text>
+        <Text id="formatted-value">Value : {formattedValue}</Text>
       </Flex>
     </Box>
   );
