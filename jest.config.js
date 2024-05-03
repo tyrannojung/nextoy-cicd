@@ -13,6 +13,7 @@ const customJestConfig = {
   },
   moduleDirectories: ['node_modules', '<rootDir>/'],
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/cypress/'],
 };
 
 module.exports = createJestConfig(customJestConfig);

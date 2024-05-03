@@ -23,6 +23,7 @@ module.exports = {
     '*.js',
     '.eslintrc.js',
     'next.config.mjs',
+    'src/e2e/**',
   ],
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
   // ESLint 확장을 통해 다양한 규칙과 설정을 적용합니다.
