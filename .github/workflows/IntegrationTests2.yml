@@ -45,9 +45,11 @@ jobs:
         run: npm start &
         shell: bash
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-        working-directory: src/e2e/playwright
+      - name: Install dependencies and Playwright
+        run: |
+          cd src/e2e/playwright
+          npm ci
+          npx playwright install --with-deps
 
       - name: Run Playwright tests
         run: npm run test:e2e
