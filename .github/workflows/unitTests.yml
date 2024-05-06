@@ -12,8 +12,8 @@ jobs:
     timeout-minutes: 4
 
     strategy:
-    matrix:
-      node-version: [16.x]
+      matrix:
+        node-version: [16.x]
 
     name: Unit tests (Jest)
 
