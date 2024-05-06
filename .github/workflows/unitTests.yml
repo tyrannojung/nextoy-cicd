@@ -13,17 +13,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
-
-    name: Unit tests (Jest)
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up node ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
       - name: Get npm store directory
         uses: actions/cache@v3
         id: npm-cache
@@ -37,4 +38,6 @@ jobs:
             ${{ runner.os }}
       - if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
         run: npm ci
-      - run: npm test
+
+      - name: Execute unit tests
+        run: npm test

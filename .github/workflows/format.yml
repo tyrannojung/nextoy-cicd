@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 4
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,7 +25,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Get npm store directory
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: |
+            **/node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            ${{ runner.os }}
+      - if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
         run: npm ci
 
       - name: Check code format
