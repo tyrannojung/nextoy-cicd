@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: Integration Tests
 on: push
 jobs:
   cypress-run:
@@ -11,4 +11,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          start: npm start
           working-directory: src/e2e/cypress
