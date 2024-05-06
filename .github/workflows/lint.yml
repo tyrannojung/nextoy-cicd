@@ -1,4 +1,4 @@
-name: Format
+name: Lint
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: ['main']
 
 jobs:
-  format:
+  eslint:
     runs-on: ubuntu-latest
     timeout-minutes: 4
 
@@ -25,4 +25,4 @@ jobs:
         run: npm ci
 
       - name: Check code format
-        run: npm run format:check
+        run: npm run lint
