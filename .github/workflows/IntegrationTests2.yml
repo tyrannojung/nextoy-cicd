@@ -1,4 +1,4 @@
-name: Integration Tests
+name: Integration Tests2
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: ['main']
 
 jobs:
-  cypress:
+  playwright:
     runs-on: ubuntu-latest
 
     strategy:
@@ -45,8 +45,17 @@ jobs:
         run: npm start &
         shell: bash
 
-      # Cypress has its own package.json in folder "e2e"
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        working-directory: src/e2e/playwright
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+        working-directory: src/e2e/playwright
+
+      - uses: actions/upload-artifact@v2
+        if: always()
         with:
-          working-directory: src/e2e/cypress
+          name: playwright-report
+          path: src/e2e/playwright/playwright-report/
+          retention-days: 30
