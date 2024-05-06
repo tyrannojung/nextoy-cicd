@@ -30,8 +30,13 @@ jobs:
             ${{ runner.os }}
       - if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
         run: npm ci
+
+      - name: Build the application
+        run: npm run build
+
       - name: Start the application
         run: npm start &
+        shell: bash
 
       # Cypress has its own package.json in folder "e2e"
       - name: Cypress run
